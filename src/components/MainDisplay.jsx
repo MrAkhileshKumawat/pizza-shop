@@ -1,12 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { cancelOrder } from "./Redux/actions"; // Import the action creator for canceling orders
 import "../components/MainDisplay.css";
 
 function MainDisplay() {
+  const dispatch = useDispatch();
   const ordersInProgress = useSelector((state) => state.ordersInProgress);
   const timeTaken = useSelector((state) => state.timeTaken);
 
-  // Function to calculate total time for a specific order
   const calculateTimeForOrder = (orderId) => {
     const orderTimeData = timeTaken[orderId];
     if (orderTimeData) {
@@ -17,7 +18,10 @@ function MainDisplay() {
     }
   };
 
-  // Function to calculate total time
+  const handleCancelOrder = (orderId) => {
+    dispatch(cancelOrder(orderId)); // Dispatch the cancelOrder action
+  };
+
   const calculateTotalTime = () => {
     let totalTime = 0;
     for (const orderId in timeTaken) {

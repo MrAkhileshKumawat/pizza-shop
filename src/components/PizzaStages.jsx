@@ -52,10 +52,7 @@ function PizzaStages() {
   useEffect(() => {
     const interval = setInterval(() => {
       setStageTimes((prevTimes) => {
-        const updatedTimes = {};
-        for (const orderId in prevTimes) {
-          updatedTimes[orderId] = prevTimes[orderId];
-        }
+        const updatedTimes = { ...prevTimes };
         data.ordersInProgress.forEach((order) => {
           updatedTimes[order.id] = updatedTimes[order.id] || new Date();
         });
@@ -158,7 +155,7 @@ const calculateMakingTime = (size) => {
       }
     })
   ) : (
-    <p>Order Not Placed</p>
+    <p></p>
   )}
 </div>
 
@@ -196,7 +193,7 @@ const calculateMakingTime = (size) => {
       }
     })
   ) : (
-    <p>Order Not Placed</p>
+    <p></p>
   )}
 </div>
 
@@ -229,7 +226,7 @@ const calculateMakingTime = (size) => {
       }
     })
   ) : (
-    <p>Order Not Placed</p>
+    <p></p>
   )}
 </div>
       </div>
